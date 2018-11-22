@@ -5,6 +5,8 @@ const body_parser = require('body-parser');
 const app = express();
 //Definindo rotas
 const index = require('./routes/index');
+const rep = require('./routes/republicas');
+const cors = require('cors');
 //Conectando com o banco de dados
 var mongoDB = 'mongodb://127.0.0.1/TpWeb';
 mongoose.connect(mongoDB);
@@ -17,9 +19,11 @@ app.use(body_parser.urlencoded({
 
 app.use(body_parser.json());
 
+app.use(cors());
 //Definindo as rotas de cada Schema
 app.use('/users',index) //ROUTES
-let port = 3000;
+app.use('/reps', rep)
+let port = 8080;
 
 app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);
