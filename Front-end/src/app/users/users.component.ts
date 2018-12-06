@@ -31,4 +31,38 @@ export class UsersComponent implements OnInit {
       users => this.users=users
     );    
   }
+
+  editar(user: User, content): void {
+
+    this.userSelecionado = user;
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-editar-aluno'})
+      .result.then((userForm: NgForm) => {
+        this.userSelecionado.name = userForm.value.nome;
+        this.userSelecionado.nickname = userForm.value.nickname;
+        this.userSelecionado.email = userForm.value.email;
+        
+
+        this.salvar(this.userSelecionado);
+    });
+  }
+  salvar(user: User): void {
+    this.userService.atualizarUser(user).subscribe();
+  }
+  apagar(user: User): void {
+    this.userService.apagarUser(user).subscribe();
+    this.users = this.users.filter(a => a !== user);
+  }
+  adicionar(content): void{
+    this.userNovo = new User();
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-adicionar-aluno'})
+      .result.then((alunoFormAdidionar: NgForm) => {
+      this.salvarNovoUser(this.userNovo);
+      this.users.push(this.userNovo);
+    });
+  }
+  salvarNovoUser(user: User): void {
+    this.userService.adicionar(user).subscribe();
+  }
 }

@@ -15,9 +15,82 @@
           <td>{{user.name}}</td>
           <td>{{user.nickname}}</td>
           <td>{{user.email}}</td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm" (click)="editar(user,content)"><i class="fa fa-pencil"></i></button>&nbsp;
+            <button type="button" class="btn btn-danger btn-sm" (click)="apagar(user)"><i class="fa fa-times"></i></button>
+          </td>
         </tr>
         </tbody>
       </table>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
+<button type="button" class="btn btn-outline-dark" (click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar User</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-editar-user">Editar User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #userForm="ngForm">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <div class="input-group">
+          <input id="nome" class="form-control" ngModel="{{userSelecionado.name}}" name="nome">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nickname">Nickname</label>
+        <div class="input-group">
+          <input id="nickname" class="form-control" ngModel="{{userSelecionado.nickname}}" name="nickname">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <input id="email" class="form-control" ngModel="{{userSelecionado.email}}" name="email">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(userForm)">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #contentModalAdicionar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-adicionar-user">Adicionar User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #userFormAdicionar="ngForm">
+      <div class="form-group">
+        <label for="nome_adicionar">Nome</label>
+        <div class="input-group">
+          <input id="nome_adicionar" class="form-control" [(ngModel)]="userNovo.name" name="nome">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email_adicionar">Email</label>
+        <div class="input-group">
+          <input id="email_adicionar" class="form-control" [(ngModel)]="userNovo.email" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nickname_adicionar">Nickname</label>
+        <div class="input-group">
+          <input id="nickname_adicionar" class="form-control" [(ngModel)]="userNovo.nickname" name="nickname">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(userFormAdicionar)">Save</button>
+  </div>
+</ng-template>

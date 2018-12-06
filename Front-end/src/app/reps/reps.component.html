@@ -5,17 +5,45 @@
         <thead>
         <tr>
           <th scope="col">Nome</th>
-          <th scope="col">contas</th>
           <th scope="col">&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let rep of reps">
           <td>{{rep.name}}</td>
-          <td>{{rep.contas}}</td>
+          <td>
+            <button type="button" class="btn btn-danger btn-sm" (click)="apagar(rep)"><i class="fa fa-times"></i></button>
+          </td>
         </tr>
-        </tbody>
+        </tbody>        
       </table>
+      
+
     </ng-template>
   </ngb-panel>
 </ngb-accordion>
+<button type="button" class="btn btn-outline-dark" (click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar Republica</button>
+
+
+
+<ng-template #contentModalAdicionar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-adicionar-rep">Adicionar República</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #repFormAdicionar="ngForm">
+      <div class="form-group">
+        <label for="nome_adicionar">Nome</label>
+        <div class="input-group">
+          <input id="nome_adicionar" class="form-control" [(ngModel)]="repNovo.name" name="nome">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(repFormAdicionar)">Save</button>
+  </div>
+</ng-template>

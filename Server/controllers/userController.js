@@ -32,13 +32,21 @@ exports.alterOneUser = function (req,res,next){
     nickname: body.nickname,
     email: body.email
   });
-  Users.findOne({name: alterUser.name},function(err,result){
+  Users.findOne({email: alterUser.email},function(err,result){
     if (err) return console.log(err);
-    result.email = alterUser.email;
+    result.name = alterUser.name;
+    result.nickname = alterUser.nickname;
     result.save();
     res.setHeader('Content-Type','application/json');
     res.status(200);
     res.send('Usuário alterado com sucesso')
   });
-  
-};
+}
+exports.deleteOneUser =  function (req,res,nex){
+    nickname =  req.eq;
+    Users.deleteOne(nickname, function(err,result){
+      if (err) return console.log(err);
+      res.setHeader('Content-Type','application/json');
+      res.status(200);
+    })
+}

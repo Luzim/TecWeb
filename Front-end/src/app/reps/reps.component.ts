@@ -25,9 +25,38 @@ export class RepsComponent implements OnInit {
     this.route.data.subscribe( data=> this.info = data);
   }
   loadReps(): void{
-    this.repService.getUsers().subscribe(
+    this.repService.getReps().subscribe(
       reps => this.reps=reps
     );
+  }
+  editar(rep: Rep, content): void {
+
+    this.repSelecionado = rep;
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-editar-aluno'})
+      .result.then((repForm: NgForm) => {
+        this.repSelecionado.name = repForm.value.nome;
+        this.salvar(this.repSelecionado);
+    });
+  }
+  salvar(rep: Rep): void {
+    this.repService.atualizarRep(rep).subscribe();
+  }
+  apagar(rep: Rep): void {
+    this.repService.apagarRep(rep).subscribe();
+    this.reps = this.reps.filter(a => a !== rep);
+  }
+  adicionar(content): void{
+    this.repNovo = new Rep();
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-adicionar-aluno'})
+      .result.then((alunoFormAdidionar: NgForm) => {
+      this.salvarNovorep(this.repNovo);
+      this.reps.push(this.repNovo);
+    });
+  }
+  salvarNovorep(rep: Rep): void {
+    this.repService.adicionar(rep).subscribe();
   }
 
 }
