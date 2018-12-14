@@ -5,14 +5,17 @@
         <thead>
         <tr>
           <th scope="col">Nome</th>
+          <th scope="col">Data</th>
           <th scope="col">&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let rep of reps">
           <td>{{rep.name}}</td>
+          <td>{{rep.contas[0]}}</td>
           <td>
-            <button type="button" class="btn btn-danger btn-sm" (click)="apagar(rep)"><i class="fa fa-times"></i></button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="apagar(rep)"><i class="fa fa-times"></i></button>&nbsp;
+            <button type="button" class="btn btn-outline-dark" (click)="adicionar(contentModalContas)" >Contas</button>
           </td>
         </tr>
         </tbody>        
@@ -45,5 +48,29 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close(repFormAdicionar)">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #contentModalContas let-modal>
+  <div class="modal-header" >
+    <h4 class="modal-title" id="modal-contas-rep">Contas República</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cont of rep.contas">
+        <td>{{rep.name}}</td>
+      </tr>
+      </tbody>        
+    </table>
   </div>
 </ng-template>

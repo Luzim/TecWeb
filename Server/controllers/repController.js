@@ -1,5 +1,5 @@
 const Rep = require('../models/republica_model');
-
+const ContasMes = require('../models/contasMes_models')
 exports.index = function(req, res, next) {
 
     Rep.find( function(err,result){
@@ -48,5 +48,24 @@ exports.deleteOneRep = function(req,res,next){
     if (err) return console.log(err);
     res.setHeader('Content-Type','application/json');
     res.status(200);
+  })
+}
+
+exports.insertContasMes = function(req,res,next){
+  body = req.body
+  name = {name: body.name}
+  mes = {data: body.data}
+
+  Rep.findOne(name, function(err, rep){
+    if(err) return console.log(err)
+    ContasMes.findOne(mes,function(erro,contM){
+      if(erro) return console.log(erro)
+      rep.contas.push(contM)
+      rep.save(function(err){
+        res.setHeader('Content-Type','application/json');
+        res.status(200);
+        res.send('Conta inserida na república com sucesso')
+      });
+    })
   })
 }

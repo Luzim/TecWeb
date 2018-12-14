@@ -24,6 +24,7 @@ export class RepService {
   adicionar(rep: Rep): Observable<any> {
     return this.http.post('http://localhost:8080/reps/insertOneRep', rep, httpOptions);
   }
+  
 
 
 }

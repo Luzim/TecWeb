@@ -15,6 +15,8 @@ export class RepsComponent implements OnInit {
   reps: Rep[];
   repSelecionado: Rep;
   repNovo: Rep;
+  repUnico: Rep;
+  contas: [];
   info: any;
   constructor(private repService: RepService,
               private modalService: NgbModal,
@@ -23,6 +25,8 @@ export class RepsComponent implements OnInit {
   ngOnInit() {
     this.loadReps();
     this.route.data.subscribe( data=> this.info = data);
+    
+  
   }
   loadReps(): void{
     this.repService.getReps().subscribe(
@@ -55,8 +59,19 @@ export class RepsComponent implements OnInit {
       this.reps.push(this.repNovo);
     });
   }
+  //mostrar(content): void {
+  //  
+  //  this.modalService.open(content, {ariaLabelledBy: 'modal-contas-rep'})
+  //    .result.then(() => {
+  //    this.loadContas(this.repUnico);
+  //  });
+  //}
+  //loadContas(repU: Rep): void{
+  //  this.repService.getReps().subscribe(
+  //    contas => this.repUnico.contas=contas
+  //  );
+  //}
   salvarNovorep(rep: Rep): void {
     this.repService.adicionar(rep).subscribe();
   }
-
 }

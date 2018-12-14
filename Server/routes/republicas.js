@@ -6,4 +6,5 @@ router.get('/', rep_controller.index);
 router.post('/insertOneRep',rep_controller.insertOne)
 router.put('/alterOneRep', rep_controller.alterOneRep)
 router.delete('/deleteOneRep/name',rep_controller.deleteOneRep)
+router.post('/insertContasMes', rep_controller.insertContasMes)
 module.exports = router;

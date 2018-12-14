@@ -1,0 +1,46 @@
+<ngb-accordion #acc="ngbAccordion">
+  <ngb-panel title="{{info.title}} - contaúblicas">
+    <ng-template ngbPanelContent>
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let conta of contas">
+          <td>{{conta.name}}</td>
+          <td>
+          </td>
+        </tr>
+        </tbody>        
+      </table>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>
+<button type="button" class="btn btn-outline-dark" (click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar contaublica</button>
+
+
+
+<ng-template #contentModalAdicionar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-adicionar-conta">Adicionar conta</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #contaFormAdicionar="ngForm">
+      <div class="form-group">
+        <label for="nome_adicionar">Nome</label>
+        <div class="input-group">
+          <input id="nome_adicionar" class="form-control" [(ngModel)]="contaNovo.name" name="nome">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(contaFormAdicionar)">Save</button>
+  </div>
+</ng-template>
