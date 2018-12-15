@@ -7,6 +7,7 @@ const app = express();
 const index = require('./routes/index');
 const rep = require('./routes/republicas');
 const cont = require('./routes/contas');
+const login = require('./routes/login');
 const cors = require('cors');
 //Conectando com o banco de dados
 var mongoDB = 'mongodb://127.0.0.1/TpWeb';
@@ -19,13 +20,17 @@ app.use(body_parser.urlencoded({
 }));
 
 app.use(body_parser.json());
+app.use(express.static('public'));
+
 
 app.use(cors());
 //Definindo as rotas de cada Schema
 app.use('/users',index) //ROUTES
 app.use('/reps', rep)
 app.use('/contas', cont)
-//app.use('/login', login)
+app.use('/login', login)
+
+
 let port = 8080;
 
 app.listen(port, () => {

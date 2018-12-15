@@ -16,8 +16,6 @@ const routes: Routes = [
       {path: 'reps', component: RepsComponent,data: {title: 'Lista'}}
     ]
   },
-  {path: 'users', component: UsersComponent, data : {title: 'Lista'} },
-  {path: 'reps', component: RepsComponent,data: {title: 'Lista'}},
   {path: 'login', component: LoginComponent }
 ];
 

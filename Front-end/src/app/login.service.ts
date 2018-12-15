@@ -14,10 +14,12 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(nome: string, password: string): Observable<User> {
-    return this.http.post<User>('http://localhost:4200/login', {
-      nome: nome,
+  login(email: string, password: string): Observable<User> {
+    
+    return this.http.post<User>('http://localhost:8080/login/login', {
+      email: email,
       password: password
     }, httpOptions);
+    
   }
 }

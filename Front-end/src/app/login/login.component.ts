@@ -18,20 +18,20 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router, private ngZone: NgZone) {
   }
 
-  login() {
-    this.loginService.login(this.nome, this.password).subscribe(
+  login(email,password) {
+    this.loginService.login(email, password).subscribe(
       user => {
-        if (user.token) {
+         if (user.token) {
           localStorage.setItem('TOKEN', user.token);
           localStorage.setItem('TIPO', user.tipo);
 
-          if ( user.tipo === 'aluno' ) {
+          if ( user.tipo === 'admin' ) {
             this.ngZone.run(() => {
-              this.router.navigateByUrl('/main/alunos');
+              this.router.navigateByUrl('/main/reps');
             });
           } else {
             this.ngZone.run(() => {
-              this.router.navigateByUrl('/main/professores');
+              this.router.navigateByUrl('/main/users');
             });
           }
         }

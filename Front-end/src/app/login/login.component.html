@@ -1,11 +1,11 @@
 <div class="container">
   <div class="card card-container">
-    <p id="profile-name" class="profile-name-card"></p>
+    <p id="profile-email" class="profile-email-card"></p>
     <form class="form-signin">
       <span id="reauth-email" class="reauth-email"></span>
-      <input type="text" id="nome" class="form-control" placeholder="Nome" required autofocus name="nome" [(ngModel)]="nome">
+      <input type="text" id="email" class="form-control" placeholder="Email" required autofocus name="email" [(ngModel)]="email">
       <input type="password" id="password" class="form-control" placeholder="Password" required name="password" [(ngModel)]="password">
-      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="login()">Entrar</button>
+      <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="login(email,password)">Entrar</button>
     </form>
   </div>
 </div>

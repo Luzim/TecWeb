@@ -15,6 +15,7 @@ exports.insertOne = function(req, res, next){
     name: body.name,
     nickname: body.nickname,
     email: body.email,
+    password: body.password,
   });
   console.log(newUser)
   newUser.save(function(err){
