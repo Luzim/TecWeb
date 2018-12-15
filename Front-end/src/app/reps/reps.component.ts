@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Rep } from './reps';
 import { RepService } from '../rep.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -20,6 +20,7 @@ export class RepsComponent implements OnInit {
   info: any;
   constructor(private repService: RepService,
               private modalService: NgbModal,
+
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -42,6 +43,10 @@ export class RepsComponent implements OnInit {
         this.repSelecionado.name = repForm.value.nome;
         this.salvar(this.repSelecionado);
     });
+  }
+  mostrar(rep: Rep,content):void {
+    this.repSelecionado=rep;
+    this.modalService.open(content, {ariaLabelledBy: 'modal-mostrar-aluno'})
   }
   salvar(rep: Rep): void {
     this.repService.atualizarRep(rep).subscribe();
