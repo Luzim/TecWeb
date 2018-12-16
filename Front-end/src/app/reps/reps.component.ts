@@ -4,7 +4,7 @@ import { RepService } from '../rep.service';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {ActivatedRoute} from '@angular/router';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reps',
@@ -20,7 +20,7 @@ export class RepsComponent implements OnInit {
   info: any;
   constructor(private repService: RepService,
               private modalService: NgbModal,
-
+              private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -28,6 +28,16 @@ export class RepsComponent implements OnInit {
     this.route.data.subscribe( data=> this.info = data);
     
   
+  }
+  logout() {
+    localStorage.removeItem('TOKEN');
+    localStorage.removeItem('TIPO');
+    this.router.navigate(['/login']);
+  }
+
+  userTipo(tipo: string) {
+    if ( localStorage.getItem('TIPO') === tipo ) { return true; }
+    return false;
   }
   loadReps(): void{
     this.repService.getReps().subscribe(

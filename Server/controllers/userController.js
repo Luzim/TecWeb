@@ -2,12 +2,13 @@ const Users = require('../models/users_model')
 
 exports.index = function(req, res, next) {
 
-    Users.find( function(err,result){
-      res.setHeader('Content-Type','application/json');
-      res.status(200);
-      res.send(JSON.stringify(result))
-    });
-  };
+  Users.find( function(err,result){
+    console.log(result)
+    res.setHeader('Content-Type','application/json');
+    res.status(200);
+    res.send(JSON.stringify(result))
+  });
+};
 
 exports.insertOne = function(req, res, next){
   body = req.body;
@@ -17,7 +18,7 @@ exports.insertOne = function(req, res, next){
     email: body.email,
     password: body.password,
   });
-  console.log(newUser)
+  console.log('ue')
   newUser.save(function(err){
     if (err) return console.log(err);
     res.setHeader('Content-Type','application/json');

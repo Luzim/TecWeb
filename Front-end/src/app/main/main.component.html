@@ -7,11 +7,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active" *ngIf="userTipo('aluno')">
-          <a class="nav-link" routerLink="./alunos">Alunos <span class="sr-only">(current)</span></a>
+        <li class="nav-item active" *ngIf="userTipo('normal')">
+          <a class="nav-link" routerLink="./users">User <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item" *ngIf="userTipo('professor')">
-          <a class="nav-link" routerLink="./professores">Professores</a>
+        <li class="nav-item" *ngIf="userTipo('admin')">
+          <a class="nav-link" routerLink="./reps">Admin</a>
         </li>
         <li class="nav-item">
           <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Sair</button>

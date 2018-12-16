@@ -24,3 +24,4 @@ export class MainComponent implements OnInit {
     return false;
   }
 }
+

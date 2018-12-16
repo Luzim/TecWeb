@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from './login/user';
+import { User } from './users/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,5 +21,12 @@ export class LoginService {
       password: password
     }, httpOptions);
     
+  }
+  cadastrar(user: User): Observable<any> {
+
+    return this.http.post('http://localhost:8080/login/insertOneusuario', user, httpOptions)
+  }
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>('http://localhost:8080/login/get',httpOptions);
   }
 }

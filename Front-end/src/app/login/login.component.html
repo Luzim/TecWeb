@@ -7,5 +7,46 @@
       <input type="password" id="password" class="form-control" placeholder="Password" required name="password" [(ngModel)]="password">
       <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin" (click)="login(email,password)">Entrar</button>
     </form>
+    <button type="button" class="btn btn-outline-dark" (click)="cadastre(contentModalCadastrar)"><i class="fa fa-plus"></i> Cadastre-se</button>
+
   </div>
 </div>
+<ng-template #contentModalCadastrar let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-cadastrar-user">Cadastre-se</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #userFormAdicionar="ngForm">
+      <div class="form-group">
+        <label for="nome_adicionar">Nome</label>
+        <div class="input-group">
+          <input id="nome_adicionar" class="form-control" [(ngModel)]="userNovo.name" name="nome">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email_adicionar">Email</label>
+        <div class="input-group">
+          <input id="email_adicionar" class="form-control" [(ngModel)]="userNovo.email" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nickname_adicionar">Nickname</label>
+        <div class="input-group">
+          <input id="nickname_adicionar" class="form-control" [(ngModel)]="userNovo.nickname" name="nickname">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password_adicionar">Password</label>
+        <div class="input-group">
+          <input id="password_adicionar" class="form-control" [(ngModel)]="userNovo.password" name="password">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(userFormAdicionar)">Save</button>
+  </div>
+</ng-template>

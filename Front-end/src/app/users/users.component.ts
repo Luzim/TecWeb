@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -18,18 +19,30 @@ export class UsersComponent implements OnInit {
   info: any;
   constructor(private userService: UserService,
               private modalService: NgbModal,
-              private route: ActivatedRoute ) { }
+              private route: ActivatedRoute ,
+              private router: Router) { }
 
   ngOnInit() {
     
     this.loadUsers();
     this.route.data.subscribe( data=> this.info = data);
   }
+  logout() {
+    localStorage.removeItem('TOKEN');
+    localStorage.removeItem('TIPO');
+    this.router.navigate(['/login']);
+  }
+
+  userTipo(tipo: string) {
+    if ( localStorage.getItem('TIPO') === tipo ) { return true; }
+    return false;
+  }
   loadUsers(): void{
     
     this.userService.getUsers().subscribe(
       users => this.users=users
     );    
+    console.log('undefined',this.users)
   }
 
   editar(user: User, content): void {

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const user_controller=require('../controllers/userController')
+var jwt = require('jsonwebtoken');
 /* GET home page. */
 router.get('/', verificaToken,user_controller.index);
 router.post('/insertOne',verificaToken,user_controller.insertOne)
