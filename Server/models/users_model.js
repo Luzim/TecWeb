@@ -7,7 +7,8 @@ let UserSchema = new Schema({
     email: {type: String, required: true},
     password: {type: String, required: true, default: '123'},
     tipo: {type: String, required: false, default:"normal"},
-    token: {type: String,required: false, default: ""}
+    token: {type: String,required: false, default: ""},
+    rep: {type: String, required: false, default: "none"}
 });
 
 module.exports = mongoose.model('User', UserSchema);

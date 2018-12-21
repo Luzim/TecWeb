@@ -1,17 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container-fluid">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Acadêmico</a>
+    <a class="navbar-brand" href="#">AppRep</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active" *ngIf="userTipo('admin')">
-          <a class="nav-link" routerLink="./users">User <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="./users">Error <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item" *ngIf="userTipo('normal')">
-          <a class="nav-link" routerLink="./reps">Reps</a>
+          <a class="nav-link" routerLink="./reps">Usuário Normal</a>
         </li>
         <li class="nav-item">
           <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Sair</button>

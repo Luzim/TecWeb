@@ -52,3 +52,7 @@ exports.deleteOneUser =  function (req,res,nex){
       res.status(200);
     })
 }
+
+exports.inserRep = function(req,res, next){
+  body = req.body
+}
